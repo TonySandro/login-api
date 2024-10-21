@@ -1,0 +1,54 @@
+{
+  "name": "login-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "sucrase-node src/main/server.ts",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --runInBand",
+    "test:unit": "yarn test --watch -c jest-unit-config.js",
+    "test:integration": "yarn test --watch -c jest-integration-config.js",
+    "test:stg": "yarn test --watch",
+    "test:ci": "yarn test --coverage"
+  },
+  "keywords": [],
+  "author": "Tony S. Duarte A.",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.1",
+    "fast-glob": "^3.3.2",
+    "mongodb": "^6.9.0",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.25.1",
+    "@shelf/jest-mongodb": "^4.3.2",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.13",
+    "@types/mongodb": "^4.0.7",
+    "@types/node": "^22.7.4",
+    "@types/supertest": "^6.0.2",
+    "@types/validator": "^13.6.3",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "ts-standard": "^12.0.2",
+    "typescript": "^5.6.2"
+  },
+  "ts-standard": {
+    "project": "./tsconfig.json"
+  },
+  "standard": {
+    "parser": "@babel/eslint-parser",
+    "plugins": [
+      "flowtype"
+    ]
+  }
+}
