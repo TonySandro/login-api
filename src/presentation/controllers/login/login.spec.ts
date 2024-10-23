@@ -1,4 +1,7 @@
-import { Authentication } from "../../../domain/usecases/authentication";
+import {
+  Authentication,
+  authenticationModel,
+} from "../../../domain/usecases/authentication";
 import { InvalidParamError, MissingParamError } from "../../errors";
 import {
   badRequest,
@@ -22,7 +25,7 @@ const makeEmailValidator = (): EmailValidator => {
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
-    async auth(email: string, password: string): Promise<string> {
+    async auth(authentication: authenticationModel): Promise<string> {
       return new Promise((resolve) => resolve("any_token"));
     }
   }
