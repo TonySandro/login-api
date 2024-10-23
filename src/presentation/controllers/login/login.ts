@@ -1,3 +1,4 @@
+import { success } from "./../../helpers/http-helper";
 import { Authentication } from "../../../domain/usecases/authentication";
 import { InvalidParamError, MissingParamError } from "../../errors";
 import {
@@ -42,6 +43,8 @@ export class LoginController implements Controller {
       if (!accessToken) {
         return unauthorized();
       }
+
+      return success({ accessToken });
     } catch (error) {
       return serverError(error);
     }
