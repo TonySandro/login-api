@@ -1,5 +1,5 @@
 import { DbAuthentication } from "../../../data/usecases/authentication/db-authentication";
-import { LoginController } from "../../../presentation/controllers/login/login";
+import { LoginController } from "../../../presentation/controllers/login/login-controller";
 import { Controller } from "../../../presentation/protocols";
 import { LogControllerDecorator } from "../../decorators/log-controller";
 

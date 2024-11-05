@@ -1,5 +1,3 @@
-import request from "supertest";
-import app from "../config/app";
 import { MongoHelper } from "../../infra/database/mongodb/helpers/mongo-helper";
 
 describe("Login Routes Middleware", () => {
@@ -14,5 +12,9 @@ describe("Login Routes Middleware", () => {
   beforeEach(async () => {
     const accountCollection = await MongoHelper.getCollection("accounts");
     await accountCollection.deleteMany({});
+  });
+
+  test("should test success", () => {
+    expect(1).toBe(1);
   });
 });

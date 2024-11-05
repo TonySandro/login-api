@@ -10,7 +10,7 @@ import {
   unauthorized,
 } from "../../helpers/http/http-helper";
 import { HttpRequest, Validation } from "../../protocols";
-import { LoginController } from "./login";
+import { LoginController } from "./login-controller";
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
