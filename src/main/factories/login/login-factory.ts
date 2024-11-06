@@ -1,11 +1,32 @@
-import { DbAuthentication } from "../../../data/usecases/authentication/db-authentication";
-import { LoginController } from "../../../presentation/controllers/login/login-controller";
-import { Controller } from "../../../presentation/protocols";
-import { LogControllerDecorator } from "../../decorators/log-controller";
+import env from "../../config/env";
+import { makeLoginValidation } from "./login-validation-factory";
+import {
+  AccountMongoRepository,
+  BcryptAdapter,
+  Controller,
+  DbAuthentication,
+  JwtAdapter,
+  LogControllerDecorator,
+  LoginController,
+  LogMongoRepository,
+} from "./login-factory-protocols";
 
 export const makeLoginController = (): Controller => {
-    const validation = new ()
-  const dbAuthentication = new DbAuthentication();
-  const loginController = new LoginController(dbAuthentication);
-  return new LogControllerDecorator(loginController);
+  const salt = 12;
+  const bcryptAdapter = new BcryptAdapter(salt);
+  const jwtAdapter = new JwtAdapter(env.jwtSecret);
+  const accountMongoRepository = new AccountMongoRepository();
+  const dbAuthentication = new DbAuthentication(
+    accountMongoRepository,
+    bcryptAdapter,
+    jwtAdapter,
+    accountMongoRepository
+  );
+  const loginController = new LoginController(
+    dbAuthentication,
+    makeLoginValidation()
+  );
+
+  const logMongoRepository = new LogMongoRepository();
+  return new LogControllerDecorator(loginController, logMongoRepository);
 };
